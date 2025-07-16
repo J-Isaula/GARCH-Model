@@ -32,7 +32,7 @@ Recuerde que la desviación estándar es la raíz cuadrada de la varianza.
 
 ## Calculo de Volatilidad en `Python`
 
-Antes de que te de dolor de cabeza mirar las fórmulas matemáticas, la buena noticoa es que puedes implementarlas en Python fácilmente.
+Antes de que te de dolor de cabeza mirar las fórmulas matemáticas, la buena noticia es que puedes implementarlas en Python fácilmente.
 
 Para calcular los cambios porcentuales como rendimientos, aplicamos el método `"pct_change()"` del paquete `"pandas"` a los datos de precios, por ejemplo:
 
@@ -43,7 +43,7 @@ return_data = price_data.pct_change()
 Luego aplicamos el método `"std()"` a los datos devueltos para calcular la desviación estándar.
 
 ```{Bash}
-Volatilidad = return_data.str()
+Volatilidad = return_data.std()
 ```
 
 ## Conversión  de Volatilidad
@@ -93,7 +93,7 @@ En este ejercicio, nos familiarizaremos con el conjunto de datos de precios diar
 ```{python}
 import pandas as pd
 
-sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/Book project using bookdown/Data/SP500.csv')
+sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/SP500.csv')
 ```
 
 -   Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe `sp_price` en una nueva columna llamada `Return`.

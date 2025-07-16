@@ -213,11 +213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="calculo-de-volatilidad-en-python" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> Calculo de Volatilidad en <code>Python</code><a href="fundamentos-del-modelo-garch.html#calculo-de-volatilidad-en-python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Antes de que te de dolor de cabeza mirar las fórmulas matemáticas, la buena noticoa es que puedes implementarlas en Python fácilmente.</p>
+<p>Antes de que te de dolor de cabeza mirar las fórmulas matemáticas, la buena noticia es que puedes implementarlas en Python fácilmente.</p>
 <p>Para calcular los cambios porcentuales como rendimientos, aplicamos el método <code>"pct_change()"</code> del paquete <code>"pandas"</code> a los datos de precios, por ejemplo:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="fundamentos-del-modelo-garch.html#cb1-1" tabindex="-1"></a><span class="ex">return_data</span> = price_data.pct_change<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
 <p>Luego aplicamos el método <code>"std()"</code> a los datos devueltos para calcular la desviación estándar.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="fundamentos-del-modelo-garch.html#cb2-1" tabindex="-1"></a><span class="ex">Volatilidad</span> = return_data.str<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="fundamentos-del-modelo-garch.html#cb2-1" tabindex="-1"></a><span class="ex">Volatilidad</span> = return_data.std<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
 </div>
 <div id="conversión-de-volatilidad" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Conversión de Volatilidad<a href="#conversi%C3%B3n-de-volatilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -254,7 +254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>En este ejercicio, nos familiarizaremos con el conjunto de datos de precios diarios del S&amp;P500. Calcularemos las rentabilidades diarias a medida que cambia el precio porcentual, graficaremos los resultados y observaremos su comportamiento a lo largo del tiempo</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="fundamentos-del-modelo-garch.html#cb3-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="fundamentos-del-modelo-garch.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="fundamentos-del-modelo-garch.html#cb3-3" tabindex="-1"></a>sp_price <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/juanisaulamejia/Documents/2025/Book project using bookdown/Data/SP500.csv&#39;</span>)</span></code></pre></div>
+<span id="cb3-3"><a href="fundamentos-del-modelo-garch.html#cb3-3" tabindex="-1"></a>sp_price <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/SP500.csv&#39;</span>)</span></code></pre></div>
 <ul>
 <li><p>Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe <code>sp_price</code> en una nueva columna llamada <code>Return</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="fundamentos-del-modelo-garch.html#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
