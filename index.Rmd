@@ -1,4 +1,4 @@
---- 
+---
 title: "Modelos GARCH"
 author: "Juan Isaula"
 date: "`r Sys.Date()`"
@@ -12,6 +12,15 @@ description: |
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
+
+```{r}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  message = TRUE,
+  warning = TRUE
+)
+```
 
 # Bienvenidos!
 
