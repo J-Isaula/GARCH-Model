@@ -1,0 +1,28 @@
+--- 
+title: "Modelos GARCH"
+author: "Juan Isaula"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+description: |
+  This is a minimal example of using the bookdown package to write a book.
+  The HTML output format for this example is bookdown::gitbook,
+  set in the _output.yml file.
+link-citations: yes
+github-repo: rstudio/bookdown-demo
+---
+
+# Bienvenidos!
+
+La volatilidad es un concepto esencial en finanzas, por lo que los modelos GARCH en Python son una opción popular para pronosticar cambios en la varianza, especialmente al trabajar con datos de series temporales que dependen del tiempo. Este curso te mostrará cómo y cuándo implementar modelos GARCH, cómo especificar los supuestos del modelo, cómo realizar pronósticos de volatilidad y evaluar su rendimiento. Utilizando datos reales, incluyendo el historial de precios de las acciones de Tesla, adquirirás experiencia práctica para cuantificar mejor los riesgos de una cartera mediante cálculos de Valor en Riesgo, covarianza y beta de acciones. También aplicarás lo aprendido a una amplia gama de activos, como acciones, índices, criptomonedas y divisas, preparándote para el futuro y el uso de modelos GARCH.
+
+Este documento contiene 4 capítulos:
+
+1.  **Capítulo 1 *"Fundamentos del Modelo GARCH"*,** analizaremos qué es GARCH. Qué son los modelos, por qué los usamos y cómo aplicar los modelos GARCH en `Python`.
+
+2.  **Capítulo 2 *"Configuración del Modelo GARCH"***, profundizaremos en el modelo GARCH específico. Supuestos y aprender a definir un modelo práctico para datos de series de tiempo financieras.
+
+3.  **Capítulo 3 *"Evaluación del desempeño del modelo",*** aprenderemos varías métricas que podemos utilizar para evaluar el rendimiento del modelo y seleccionar un mejor modelo.
+
+4.  **En el último capítulo *"GARCH en acción"*,** aprenderemos algunas aplicaciones prácticas de los modelos GARCH en finanzas, gestión de riesgos y cartera, que incluye cálculos de valor en riesgo, covarianza dinámica y betas de acciones.
