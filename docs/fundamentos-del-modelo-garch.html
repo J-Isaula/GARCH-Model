@@ -215,9 +215,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.3</span> Calculo de Volatilidad en <code>Python</code><a href="fundamentos-del-modelo-garch.html#calculo-de-volatilidad-en-python" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Antes de que te de dolor de cabeza mirar las fórmulas matemáticas, la buena noticia es que puedes implementarlas en Python fácilmente.</p>
 <p>Para calcular los cambios porcentuales como rendimientos, aplicamos el método <code>"pct_change()"</code> del paquete <code>"pandas"</code> a los datos de precios, por ejemplo:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="fundamentos-del-modelo-garch.html#cb1-1" tabindex="-1"></a><span class="ex">return_data</span> = price_data.pct_change<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="fundamentos-del-modelo-garch.html#cb2-1" tabindex="-1"></a><span class="ex">return_data</span> = price_data.pct_change<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
 <p>Luego aplicamos el método <code>"std()"</code> a los datos devueltos para calcular la desviación estándar.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="fundamentos-del-modelo-garch.html#cb2-1" tabindex="-1"></a><span class="ex">Volatilidad</span> = return_data.std<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="fundamentos-del-modelo-garch.html#cb3-1" tabindex="-1"></a><span class="ex">Volatilidad</span> = return_data.std<span class="er">(</span><span class="kw">)</span></span></code></pre></div>
 </div>
 <div id="conversión-de-volatilidad" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Conversión de Volatilidad<a href="#conversi%C3%B3n-de-volatilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -252,20 +252,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.7</span> Observando la agrupación de la volatilidad<a href="#observando-la-agrupaci%C3%B3n-de-la-volatilidad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La agrupación de la volatilidad se observa con frecuencia en los datos del mercado financiero y plantea un desafío para el modelado de series de tiempo.</p>
 <p>En este ejercicio, nos familiarizaremos con el conjunto de datos de precios diarios del S&amp;P500. Calcularemos las rentabilidades diarias a medida que cambia el precio porcentual, graficaremos los resultados y observaremos su comportamiento a lo largo del tiempo</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="fundamentos-del-modelo-garch.html#cb3-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="fundamentos-del-modelo-garch.html#cb3-2" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="fundamentos-del-modelo-garch.html#cb3-3" tabindex="-1"></a>sp_price <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/SP500.csv&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="fundamentos-del-modelo-garch.html#cb4-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="fundamentos-del-modelo-garch.html#cb4-2" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="fundamentos-del-modelo-garch.html#cb4-3" tabindex="-1"></a>sp_price <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/SP500.csv&#39;</span>)</span></code></pre></div>
 <ul>
 <li><p>Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe <code>sp_price</code> en una nueva columna llamada <code>Return</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="fundamentos-del-modelo-garch.html#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
-<span id="cb4-2"><a href="fundamentos-del-modelo-garch.html#cb4-2" tabindex="-1"></a>matplotlib.use(<span class="st">&quot;Agg&quot;</span>)</span>
-<span id="cb4-3"><a href="fundamentos-del-modelo-garch.html#cb4-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="fundamentos-del-modelo-garch.html#cb4-4" tabindex="-1"></a>plt.rcParams[<span class="st">&quot;figure.dpi&quot;</span>] <span class="op">=</span> <span class="dv">150</span></span>
-<span id="cb4-5"><a href="fundamentos-del-modelo-garch.html#cb4-5" tabindex="-1"></a><span class="co"># Cambios porcentuales </span></span>
-<span id="cb4-6"><a href="fundamentos-del-modelo-garch.html#cb4-6" tabindex="-1"></a>sp_price[<span class="st">&#39;Return&#39;</span>] <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> (sp_price[<span class="st">&#39;Close&#39;</span>].pct_change())</span>
-<span id="cb4-7"><a href="fundamentos-del-modelo-garch.html#cb4-7" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="fundamentos-del-modelo-garch.html#cb4-8" tabindex="-1"></a><span class="co"># Ultimos 10 datos del sp_price</span></span>
-<span id="cb4-9"><a href="fundamentos-del-modelo-garch.html#cb4-9" tabindex="-1"></a><span class="bu">print</span>(sp_price.tail(<span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="fundamentos-del-modelo-garch.html#cb5-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
+<span id="cb5-2"><a href="fundamentos-del-modelo-garch.html#cb5-2" tabindex="-1"></a>matplotlib.use(<span class="st">&quot;Agg&quot;</span>)</span>
+<span id="cb5-3"><a href="fundamentos-del-modelo-garch.html#cb5-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb5-4"><a href="fundamentos-del-modelo-garch.html#cb5-4" tabindex="-1"></a>plt.rcParams[<span class="st">&quot;figure.dpi&quot;</span>] <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb5-5"><a href="fundamentos-del-modelo-garch.html#cb5-5" tabindex="-1"></a><span class="co"># Cambios porcentuales </span></span>
+<span id="cb5-6"><a href="fundamentos-del-modelo-garch.html#cb5-6" tabindex="-1"></a>sp_price[<span class="st">&#39;Return&#39;</span>] <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> (sp_price[<span class="st">&#39;Close&#39;</span>].pct_change())</span>
+<span id="cb5-7"><a href="fundamentos-del-modelo-garch.html#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="fundamentos-del-modelo-garch.html#cb5-8" tabindex="-1"></a><span class="co"># Ultimos 10 datos del sp_price</span></span>
+<span id="cb5-9"><a href="fundamentos-del-modelo-garch.html#cb5-9" tabindex="-1"></a><span class="bu">print</span>(sp_price.tail(<span class="dv">10</span>))</span></code></pre></div>
 <pre><code>##             Date    Close    Return
 ## 2326  2019/09/27  2961.79 -0.531633
 ## 2327  2019/09/30  2976.74  0.504762
@@ -277,29 +277,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2333  2019/10/08  2893.06 -1.556083
 ## 2334  2019/10/09  2919.40  0.910455
 ## 2335  2019/10/10  2938.13  0.641570</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="fundamentos-del-modelo-garch.html#cb6-1" tabindex="-1"></a><span class="co"># Plot de Return</span></span>
-<span id="cb6-2"><a href="fundamentos-del-modelo-garch.html#cb6-2" tabindex="-1"></a>plt.plot(sp_price[<span class="st">&#39;Return&#39;</span>], color <span class="op">=</span> <span class="st">&#39;tomato&#39;</span>, label <span class="op">=</span> <span class="st">&#39;Daily Returns&#39;</span>)</span>
-<span id="cb6-3"><a href="fundamentos-del-modelo-garch.html#cb6-3" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</span>
-<span id="cb6-4"><a href="fundamentos-del-modelo-garch.html#cb6-4" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-5"><a href="fundamentos-del-modelo-garch.html#cb6-5" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-6"><a href="fundamentos-del-modelo-garch.html#cb6-6" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/grafico_return-1.png" width="672" /></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="fundamentos-del-modelo-garch.html#cb7-1" tabindex="-1"></a><span class="co"># Plot de Return</span></span>
+<span id="cb7-2"><a href="fundamentos-del-modelo-garch.html#cb7-2" tabindex="-1"></a>plt.plot(sp_price[<span class="st">&#39;Return&#39;</span>], color <span class="op">=</span> <span class="st">&#39;tomato&#39;</span>, label <span class="op">=</span> <span class="st">&#39;Daily Returns&#39;</span>)</span>
+<span id="cb7-3"><a href="fundamentos-del-modelo-garch.html#cb7-3" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</span>
+<span id="cb7-4"><a href="fundamentos-del-modelo-garch.html#cb7-4" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb7-5"><a href="fundamentos-del-modelo-garch.html#cb7-5" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb7-6"><a href="fundamentos-del-modelo-garch.html#cb7-6" tabindex="-1"></a>plt.show()</span></code></pre></div>
+<p><img src="_main_files/figure-html/grafico_return-1.png" width="576" /></p>
 <p><br />
 Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.<br />
 </p></li>
 </ul>
 <p>Ahora calculemos la volatilidad diaria como la desviación estándar de la rentabilidad de los precios. Luego, convertirá la volatilidad diaria en la volatilidad mensual y anual.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="fundamentos-del-modelo-garch.html#cb7-1" tabindex="-1"></a>std_daily <span class="op">=</span> sp_price[<span class="st">&#39;Return&#39;</span>].std()</span>
-<span id="cb7-2"><a href="fundamentos-del-modelo-garch.html#cb7-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;volatilidad Diaria: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_daily))</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="fundamentos-del-modelo-garch.html#cb8-1" tabindex="-1"></a>std_daily <span class="op">=</span> sp_price[<span class="st">&#39;Return&#39;</span>].std()</span>
+<span id="cb8-2"><a href="fundamentos-del-modelo-garch.html#cb8-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;volatilidad Diaria: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_daily))</span></code></pre></div>
 <pre><code>## volatilidad Diaria:  0.92%</code></pre>
 <p>Ahora calculemos la volatilidad mensual a partir de la volatilidad diaria:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb9-1"><a href="fundamentos-del-modelo-garch.html#cb9-1" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb9-2"><a href="fundamentos-del-modelo-garch.html#cb9-2" tabindex="-1"></a>std_monthly <span class="op">=</span> math.sqrt(<span class="dv">21</span>) <span class="op">*</span> std_daily</span>
-<span id="cb9-3"><a href="fundamentos-del-modelo-garch.html#cb9-3" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;volatilidad Mensual: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_monthly))</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="fundamentos-del-modelo-garch.html#cb10-1" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb10-2"><a href="fundamentos-del-modelo-garch.html#cb10-2" tabindex="-1"></a>std_monthly <span class="op">=</span> math.sqrt(<span class="dv">21</span>) <span class="op">*</span> std_daily</span>
+<span id="cb10-3"><a href="fundamentos-del-modelo-garch.html#cb10-3" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;volatilidad Mensual: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_monthly))</span></code></pre></div>
 <pre><code>## volatilidad Mensual:  4.20%</code></pre>
 <p>Y Luego la volatilidad anual a partir de la volatilidad diaria:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb11-1"><a href="fundamentos-del-modelo-garch.html#cb11-1" tabindex="-1"></a>std_annual <span class="op">=</span> math.sqrt(<span class="dv">252</span>) <span class="op">*</span> std_daily</span>
-<span id="cb11-2"><a href="fundamentos-del-modelo-garch.html#cb11-2" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;Volatilidad Anual: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_annual))</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="fundamentos-del-modelo-garch.html#cb12-1" tabindex="-1"></a>std_annual <span class="op">=</span> math.sqrt(<span class="dv">252</span>) <span class="op">*</span> std_daily</span>
+<span id="cb12-2"><a href="fundamentos-del-modelo-garch.html#cb12-2" tabindex="-1"></a><span class="bu">print</span> (<span class="st">&#39;Volatilidad Anual: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_annual))</span></code></pre></div>
 <pre><code>## Volatilidad Anual:  14.55%</code></pre>
 <p>Observe que el mercado es realmente arriesgado. La volatilidad anualizada del S&amp;P500 indica que sus rendimientos reales pueden fluctuar más del 10% en torno a la rentabilidad media.</p>
 
