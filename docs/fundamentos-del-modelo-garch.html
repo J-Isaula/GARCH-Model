@@ -255,6 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="fundamentos-del-modelo-garch.html#cb3-1" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-2"><a href="fundamentos-del-modelo-garch.html#cb3-2" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="fundamentos-del-modelo-garch.html#cb3-3" tabindex="-1"></a>sp_price <span class="op">=</span> pd.read_csv(<span class="st">&#39;/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/SP500.csv&#39;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-8-1.png" width="700" /></p>
 <ul>
 <li><p>Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe <code>sp_price</code> en una nueva columna llamada <code>Return</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="fundamentos-del-modelo-garch.html#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -278,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-2"><a href="fundamentos-del-modelo-garch.html#cb6-2" tabindex="-1"></a>plt.plot(sp_price[<span class="st">&#39;Return&#39;</span>], color <span class="op">=</span> <span class="st">&#39;tomato&#39;</span>, label <span class="op">=</span> <span class="st">&#39;Daily Returns&#39;</span>)</span>
 <span id="cb6-3"><a href="fundamentos-del-modelo-garch.html#cb6-3" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</span>
 <span id="cb6-4"><a href="fundamentos-del-modelo-garch.html#cb6-4" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="_main_files/figure-html/unnamed-chunk-9-3.png" width="672" /></p>
 <p><br />
 Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.<br />
 </p></li>
