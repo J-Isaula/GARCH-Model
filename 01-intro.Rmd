@@ -98,8 +98,11 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
 
 -   Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe `sp_price` en una nueva columna llamada `Return`.
 
-    ```{python}
+    ```{python, grafico_return, fig.width=6, fig.height=4, fig.show = 'hold'}
+    import matplotlib
+    matplotlib.use("Agg")
     import matplotlib.pyplot as plt
+    plt.rcParams["figure.dpi"] = 150
     # Cambios porcentuales 
     sp_price['Return'] = 100 * (sp_price['Close'].pct_change())
 
@@ -109,6 +112,8 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
     # Plot de Return
     plt.plot(sp_price['Return'], color = 'tomato', label = 'Daily Returns')
     plt.legend(loc='upper right')
+    plt.grid(True)
+    plt.tight_layout()
     plt.show()
     ```
 
