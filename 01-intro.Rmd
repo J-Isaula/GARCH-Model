@@ -46,7 +46,7 @@ Luego aplicamos el método `"std()"` a los datos devueltos para calcular la desv
 Volatilidad = return_data.std()
 ```
 
-## Conversión  de Volatilidad
+## Conversión de Volatilidad
 
 Supongamos que medimos la volatilidad como la desviación estándar de los rendimientos, entonces se puede obtener la volatilidad mensual multiplicando la volatilidad diaria por la raíz cuadrada de 21, que es el número promedio de días de negociación en un mes.
 
@@ -68,7 +68,7 @@ El termino "dispersión" en griego antiguo se observa con frecuencia en los dato
 
 La volatilidad tiende a aumentar o disminuir sistemáticamente con el tiempo.
 
-## Detectando Heterocedasticidad 
+## Detectando Heterocedasticidad
 
 Una forma sencilla de detectar la heterocedasticidad en una serie temporal consiste en gráficar los datos y observar su comportamiento a lo largo del tiempo.
 
@@ -113,7 +113,7 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
     ```
 
     \
-    Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad. \
+    Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.\
 
 Ahora calculemos la volatilidad diaria como la desviación estándar de la rentabilidad de los precios. Luego, convertirá la volatilidad diaria en la volatilidad mensual y anual.
 
@@ -138,4 +138,3 @@ print ('Volatilidad Anual: ', '{:.2f}%'.format(std_annual))
 ```
 
 Observe que el mercado es realmente arriesgado. La volatilidad anualizada del S&P500 indica que sus rendimientos reales pueden fluctuar más del 10% en torno a la rentabilidad media.
-
