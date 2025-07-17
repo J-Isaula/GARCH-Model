@@ -98,7 +98,7 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
 
 -   Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe `sp_price` en una nueva columna llamada `Return`.
 
-    ```{python, grafico_return, fig.width=6, fig.height=4, fig.show = 'hold'}
+    ```{python, grafico_return, include = TRUE}
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
