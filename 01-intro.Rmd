@@ -98,7 +98,7 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
 
 -   Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe `sp_price` en una nueva columna llamada `Return`.
 
-    ```{python grafico_return, include=TRUE}
+    ```{python}
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -109,6 +109,9 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
     # Ultimos 10 datos del sp_price
     print(sp_price.tail(10))
 
+    ```
+
+    ```{python grafico_return, eval = FALSE}
     # Plot de Return
     plt.plot(sp_price['Return'], color = 'tomato', label = 'Daily Returns')
     plt.legend(loc='upper right')
@@ -116,7 +119,11 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
     plt.tight_layout()
 
     # ¡Guardar en archivo y NO usar plt.show()!
-    #plt.savefig("grafico_return.png", dpi=150)
+    plt.savefig("grafico_return.png", dpi=150)
+    ```
+
+    ```{r fig-grafico-return, echo=FALSE}
+    knitr::include_graphics("grafico_return.png")
     ```
 
 Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.
