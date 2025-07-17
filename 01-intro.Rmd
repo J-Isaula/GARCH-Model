@@ -98,11 +98,11 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
 
 -   Comencemos calculando los rendimientos diarios como cambios porcentuales y guardamos en el dataframe `sp_price` en una nueva columna llamada `Return`.
 
-    ```{python, grafico_return, include = TRUE}
+    ```{python grafico_return, include=TRUE}
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
-    plt.rcParams["figure.dpi"] = 150
+
     # Cambios porcentuales 
     sp_price['Return'] = 100 * (sp_price['Close'].pct_change())
 
@@ -114,11 +114,12 @@ sp_price = pd.read_csv('/Users/juanisaulamejia/Documents/2025/GARCH Model/Data/S
     plt.legend(loc='upper right')
     plt.grid(True)
     plt.tight_layout()
-    plt.show()
+
+    # ¡Guardar en archivo y NO usar plt.show()!
+    #plt.savefig("grafico_return.png", dpi=150)
     ```
 
-    \
-    Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.\
+Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.
 
 Ahora calculemos la volatilidad diaria como la desviación estándar de la rentabilidad de los precios. Luego, convertirá la volatilidad diaria en la volatilidad mensual y anual.
 

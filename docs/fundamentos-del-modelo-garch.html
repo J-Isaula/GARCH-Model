@@ -260,7 +260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="fundamentos-del-modelo-garch.html#cb4-1" tabindex="-1"></a><span class="im">import</span> matplotlib</span>
 <span id="cb4-2"><a href="fundamentos-del-modelo-garch.html#cb4-2" tabindex="-1"></a>matplotlib.use(<span class="st">&quot;Agg&quot;</span>)</span>
 <span id="cb4-3"><a href="fundamentos-del-modelo-garch.html#cb4-3" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb4-4"><a href="fundamentos-del-modelo-garch.html#cb4-4" tabindex="-1"></a>plt.rcParams[<span class="st">&quot;figure.dpi&quot;</span>] <span class="op">=</span> <span class="dv">150</span></span>
+<span id="cb4-4"><a href="fundamentos-del-modelo-garch.html#cb4-4" tabindex="-1"></a></span>
 <span id="cb4-5"><a href="fundamentos-del-modelo-garch.html#cb4-5" tabindex="-1"></a><span class="co"># Cambios porcentuales </span></span>
 <span id="cb4-6"><a href="fundamentos-del-modelo-garch.html#cb4-6" tabindex="-1"></a>sp_price[<span class="st">&#39;Return&#39;</span>] <span class="op">=</span> <span class="dv">100</span> <span class="op">*</span> (sp_price[<span class="st">&#39;Close&#39;</span>].pct_change())</span>
 <span id="cb4-7"><a href="fundamentos-del-modelo-garch.html#cb4-7" tabindex="-1"></a></span>
@@ -277,17 +277,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2333  2019/10/08  2893.06 -1.556083
 ## 2334  2019/10/09  2919.40  0.910455
 ## 2335  2019/10/10  2938.13  0.641570</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="fundamentos-del-modelo-garch.html#cb6-1" tabindex="-1"></a><span class="co"># Plot de Return</span></span>
-<span id="cb6-2"><a href="fundamentos-del-modelo-garch.html#cb6-2" tabindex="-1"></a>plt.plot(sp_price[<span class="st">&#39;Return&#39;</span>], color <span class="op">=</span> <span class="st">&#39;tomato&#39;</span>, label <span class="op">=</span> <span class="st">&#39;Daily Returns&#39;</span>)</span>
-<span id="cb6-3"><a href="fundamentos-del-modelo-garch.html#cb6-3" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</span>
-<span id="cb6-4"><a href="fundamentos-del-modelo-garch.html#cb6-4" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb6-5"><a href="fundamentos-del-modelo-garch.html#cb6-5" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb6-6"><a href="fundamentos-del-modelo-garch.html#cb6-6" tabindex="-1"></a>plt.show()</span></code></pre></div>
-<p><img src="_main_files/figure-html/grafico_return-1.png" width="672" /></p>
-<p><br />
-Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.<br />
-</p></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="fundamentos-del-modelo-garch.html#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="fundamentos-del-modelo-garch.html#cb6-2" tabindex="-1"></a><span class="co"># Plot de Return</span></span>
+<span id="cb6-3"><a href="fundamentos-del-modelo-garch.html#cb6-3" tabindex="-1"></a>plt.plot(sp_price[<span class="st">&#39;Return&#39;</span>], color <span class="op">=</span> <span class="st">&#39;tomato&#39;</span>, label <span class="op">=</span> <span class="st">&#39;Daily Returns&#39;</span>)</span>
+<span id="cb6-4"><a href="fundamentos-del-modelo-garch.html#cb6-4" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">&#39;upper right&#39;</span>)</span>
+<span id="cb6-5"><a href="fundamentos-del-modelo-garch.html#cb6-5" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-6"><a href="fundamentos-del-modelo-garch.html#cb6-6" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb6-7"><a href="fundamentos-del-modelo-garch.html#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="fundamentos-del-modelo-garch.html#cb6-8" tabindex="-1"></a><span class="co"># ¡Guardar en archivo y NO usar plt.show()!</span></span>
+<span id="cb6-9"><a href="fundamentos-del-modelo-garch.html#cb6-9" tabindex="-1"></a><span class="co">#plt.savefig(&quot;grafico_return.png&quot;, dpi=150)</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/grafico_return-1.png" width="672" /></p></li>
 </ul>
+<p>Como se muestra en el gráfico, el mercado presentó periodos de alta volatilidad seguidos de periodos de baja volatilidad.</p>
 <p>Ahora calculemos la volatilidad diaria como la desviación estándar de la rentabilidad de los precios. Luego, convertirá la volatilidad diaria en la volatilidad mensual y anual.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb7-1"><a href="fundamentos-del-modelo-garch.html#cb7-1" tabindex="-1"></a>std_daily <span class="op">=</span> sp_price[<span class="st">&#39;Return&#39;</span>].std()</span>
 <span id="cb7-2"><a href="fundamentos-del-modelo-garch.html#cb7-2" tabindex="-1"></a><span class="bu">print</span>(<span class="st">&#39;volatilidad Diaria: &#39;</span>, <span class="st">&#39;</span><span class="sc">{:.2f}</span><span class="st">%&#39;</span>.<span class="bu">format</span>(std_daily))</span></code></pre></div>

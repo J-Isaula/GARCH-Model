@@ -11,3 +11,4 @@ observando-la-agrupación-de-la-volatilidad
 qué-son-arch-y-garch
 luego-vino-el-garch
 la-volatilidad-de-muchas-series-no-es-constante
+fig:fig-grafico-return
