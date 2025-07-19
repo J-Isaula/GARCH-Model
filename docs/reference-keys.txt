@@ -12,3 +12,11 @@ qué-son-arch-y-garch
 luego-vino-el-garch
 la-volatilidad-de-muchas-series-no-es-constante
 fig:fig-grafico-return
+qué-son-arch-y-garch-1
+luego-vino-el-garch-1
+la-volatilidad-de-muchas-series-no-es-constante-1
+pronosticando-la-varianza
+origenes-del-arch-y-garch
+el-modelo-arch
+volatilidad
+características-de-la-volatilidad

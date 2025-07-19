@@ -29,7 +29,7 @@ set in the _output.yml file.</p>" />
 <meta name="author" content="Juan Isaula" />
 
 
-<meta name="date" content="2025-07-16" />
+<meta name="date" content="2025-07-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,11 +159,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.1" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#homocedasticidad-vs-heterocedasticidad"><i class="fa fa-check"></i><b>2.6.1</b> Homocedasticidad vs Heterocedasticidad</a></li>
 </ul></li>
 <li class="chapter" data-level="2.7" data-path="index.html"><a href="#observando-la-agrupaci%C3%B3n-de-la-volatilidad"><i class="fa fa-check"></i><b>2.7</b> Observando la agrupación de la volatilidad</a></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="index.html"><a href="#qu%C3%A9-son-arch-y-garch"><i class="fa fa-check"></i><b>3</b> ¿Qué son ARCH y GARCH?</a>
+<li class="chapter" data-level="2.8" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#origenes-del-arch-y-garch"><i class="fa fa-check"></i><b>2.8</b> Origenes del ARCH y GARCH</a></li>
+<li class="chapter" data-level="2.9" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#luego-vino-el-garch"><i class="fa fa-check"></i><b>2.9</b> Luego vino el GARCH</a></li>
+<li class="chapter" data-level="2.10" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#la-volatilidad-de-muchas-series-no-es-constante"><i class="fa fa-check"></i><b>2.10</b> La volatilidad de muchas series no es constante</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="qué-son-arch-y-garch.html"><a href="qué-son-arch-y-garch.html"><i class="fa fa-check"></i><b>3.1</b> Luego vino el GARCH</a></li>
-<li class="chapter" data-level="3.2" data-path="qué-son-arch-y-garch.html"><a href="qué-son-arch-y-garch.html#la-volatilidad-de-muchas-series-no-es-constante"><i class="fa fa-check"></i><b>3.2</b> La volatilidad de muchas series no es constante</a></li>
+<li class="chapter" data-level="2.10.1" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#pronosticando-la-varianza"><i class="fa fa-check"></i><b>2.10.1</b> Pronosticando la Varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="fundamentos-del-modelo-garch.html"><a href="fundamentos-del-modelo-garch.html#el-modelo-arch"><i class="fa fa-check"></i><b>2.11</b> El modelo ARCH</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -189,18 +191,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Modelos GARCH</h1>
 <p class="author"><em>Juan Isaula</em></p>
-<p class="date"><em>2025-07-16</em></p>
+<p class="date"><em>2025-07-19</em></p>
 </div>
 <div id="bienvenidos" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Bienvenidos!<a href="index.html#bienvenidos" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>La volatilidad es un concepto esencial en finanzas, por lo que los modelos GARCH en Python son una opción popular para pronosticar cambios en la varianza, especialmente al trabajar con datos de series temporales que dependen del tiempo. Este curso te mostrará cómo y cuándo implementar modelos GARCH, cómo especificar los supuestos del modelo, cómo realizar pronósticos de volatilidad y evaluar su rendimiento. Utilizando datos reales, incluyendo el historial de precios de las acciones de Tesla, adquirirás experiencia práctica para cuantificar mejor los riesgos de una cartera mediante cálculos de Valor en Riesgo, covarianza y beta de acciones. También aplicarás lo aprendido a una amplia gama de activos, como acciones, índices, criptomonedas y divisas, preparándote para el futuro y el uso de modelos GARCH.</p>
-<p>Este documento contiene 4 capítulos:</p>
-<ol style="list-style-type: decimal">
-<li><p><strong>Capítulo 1 <em>“Fundamentos del Modelo GARCH”</em>,</strong> analizaremos qué es GARCH. Qué son los modelos, por qué los usamos y cómo aplicar los modelos GARCH en <code>Python</code>.</p></li>
-<li><p><strong>Capítulo 2 <em>“Configuración del Modelo GARCH”</em></strong>, profundizaremos en el modelo GARCH específico. Supuestos y aprender a definir un modelo práctico para datos de series de tiempo financieras.</p></li>
-<li><p><strong>Capítulo 3 <em>“Evaluación del desempeño del modelo”,</em></strong> aprenderemos varías métricas que podemos utilizar para evaluar el rendimiento del modelo y seleccionar un mejor modelo.</p></li>
-<li><p><strong>En el último capítulo <em>“GARCH en acción”</em>,</strong> aprenderemos algunas aplicaciones prácticas de los modelos GARCH en finanzas, gestión de riesgos y cartera, que incluye cálculos de valor en riesgo, covarianza dinámica y betas de acciones.</p></li>
-</ol>
+<p>La volatilidad es un concepto esencial en finanzas, por lo que los modelos GARCH en Python son una opción popular para pronosticar cambios en la varianza, especialmente al trabajar con datos de series temporales que dependen del tiempo. Este artículo te mostrará cómo y cuándo implementar modelos GARCH, cómo especificar los supuestos del modelo, cómo realizar pronósticos de volatilidad y evaluar su rendimiento. Utilizando datos reales, incluyendo el historial de precios de las acciones de Tesla, adquirirás experiencia práctica para cuantificar mejor los riesgos de una cartera mediante cálculos de Valor en Riesgo, covarianza y beta de acciones. También aplicarás lo aprendido a una amplia gama de activos, como acciones, índices, criptomonedas y divisas, preparándote para el futuro y el uso de modelos GARCH.</p>
 
 </div>
             </section>
