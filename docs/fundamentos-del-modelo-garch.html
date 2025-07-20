@@ -363,7 +363,23 @@ h_t = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_p\epsilon_{t-p}^2\hsp
 <p>De los supuestos del modelo se deduce que <span class="math inline">\(\epsilon_t | \psi_{t-1} \sim N(0, h_t)\)</span> y si el proceso <span class="math inline">\(y_t | \psi_{t-1}\)</span> tiene media <span class="math inline">\(\mu_t = 0\)</span>, <span class="math inline">\(\epsilon_t = y_t\)</span>. En este caso, el modeoo puede expresarse como:</p>
 <p><span class="math display">\[\epsilon_t|\psi_{t-1}\sim N(0, h_t) \hspace{5cm} (5)\]</span></p>
 <p><span class="math display">\[h_t = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_p\epsilon_{t-p}^2 \hspace{2.5cm} (6)\]</span></p>
-<p>que es el modelo <code>ARCH(p)</code> propuesto, inicialmente, por Engle. Además, la varianza <span class="math inline">\(h_t\)</span> puede modelarse mediante un proceso auto regresivo de orden <span class="math inline">\(p\)</span>. <code>AR(p)</code> en las variables <span class="math inline">\(u_t = \epsilon_t^2\)</span>.</p>
+<p>que es el modelo <code>ARCH(p)</code> propuesto, inicialmente, por Engle. Además, la varianza <span class="math inline">\(h_t\)</span> puede modelarse mediante un proceso auto regresivo de orden <span class="math inline">\(p\)</span>. <code>AR(p)</code> en las variables <span class="math inline">\(u_t = \epsilon_t^2\)</span>. De igual forma, las esperanzas y varianzas no condicionales para el modelo definido por (5) y (6) son:</p>
+<p><span class="math display">\[
+E[\epsilon_t] = E\left[\begin{array}{c}E\left(\begin{array}{c}\epsilon_t | \psi_{t-1}\end{array}\right)\end{array}\right] = 0 \hspace{5cm} (7)
+\]</span></p>
+<p><span class="math display">\[
+Var[\epsilon_t] = E[\epsilon_t^2] = E\left[\begin{array}{c}E\left(\begin{array}{c}\epsilon_t^2 | \psi_{t-1}\end{array}\right)\end{array}\right] = E[h_t] = \sigma_t^2\hspace{0.8cm} (8)
+\]</span></p>
+<p>y si la varianza condicional <span class="math inline">\(h_t\)</span> está dada por la ecuación (6), al sustituirla en la ecuación<span class="math inline">\(Var[\epsilon_t] = E[h_t]\)</span> obtenemos:</p>
+<p><span class="math display">\[
+Var[\epsilon_t] = \alpha_0 + \alpha_1Var[\epsilon_{t-1}] + . . . + \alpha_p Var[\epsilon_{t-p}] \hspace{2cm} (9)
+\]</span></p>
+<p>y dado que el proceso <span class="math inline">\(\{\epsilon_t\}\)</span> es estacionario, <span class="math inline">\(Var[\epsilon_t] = Var[\epsilon_{t-k}]\)</span> para todo <span class="math inline">\(k\)</span> y, despejando, la varianza no condicional está dada por:</p>
+<p><span class="math display">\[Var[\epsilon_t] = \frac{\alpha_0}{1 - \alpha_1 - \alpha_1 - . . . - \alpha_p} = \sigma_t^2 \hspace{3.8cm} (10)\]</span></p>
+<p>Debido a este resultado se tiene, en este caso, una restricción más para los parámetros de la varianza:</p>
+<p><span class="math display">\[
+\Sigma_{i=1}^p \alpha_i &lt; 1
+\]</span></p>
 
 
 </div>

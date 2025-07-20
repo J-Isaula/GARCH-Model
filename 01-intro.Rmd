@@ -206,4 +206,28 @@ $$\epsilon_t|\psi_{t-1}\sim N(0, h_t) \hspace{5cm} (5)$$
 
 $$h_t = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_p\epsilon_{t-p}^2 \hspace{2.5cm} (6)$$
 
-que es el modelo `ARCH(p)` propuesto, inicialmente, por Engle. Además, la varianza $h_t$ puede modelarse mediante un proceso auto regresivo de orden $p$. `AR(p)` en las variables $u_t = \epsilon_t^2$.
+que es el modelo `ARCH(p)` propuesto, inicialmente, por Engle. Además, la varianza $h_t$ puede modelarse mediante un proceso auto regresivo de orden $p$. `AR(p)` en las variables $u_t = \epsilon_t^2$. De igual forma, las esperanzas y varianzas no condicionales para el modelo definido por (5) y (6) son:
+
+$$
+E[\epsilon_t] = E\left[\begin{array}{c}E\left(\begin{array}{c}\epsilon_t | \psi_{t-1}\end{array}\right)\end{array}\right] = 0 \hspace{5cm} (7)
+$$
+
+$$
+Var[\epsilon_t] = E[\epsilon_t^2] = E\left[\begin{array}{c}E\left(\begin{array}{c}\epsilon_t^2 | \psi_{t-1}\end{array}\right)\end{array}\right] = E[h_t] = \sigma_t^2\hspace{0.8cm} (8)
+$$
+
+y si la varianza condicional $h_t$ está dada por la ecuación (6), al sustituirla en la ecuación$Var[\epsilon_t] = E[h_t]$ obtenemos:
+
+$$
+Var[\epsilon_t] = \alpha_0 + \alpha_1Var[\epsilon_{t-1}] + . . . + \alpha_p Var[\epsilon_{t-p}] \hspace{2cm} (9)
+$$
+
+y dado que el proceso $\{\epsilon_t\}$ es estacionario, $Var[\epsilon_t] = Var[\epsilon_{t-k}]$ para todo $k$ y, despejando, la varianza no condicional está dada por:
+
+$$Var[\epsilon_t] = \frac{\alpha_0}{1 - \alpha_1 - \alpha_1 - . . . - \alpha_p} = \sigma_t^2 \hspace{3.8cm} (10)$$
+
+Debido a este resultado se tiene, en este caso, una restricción más para los parámetros de la varianza:
+
+$$
+\Sigma_{i=1}^p \alpha_i < 1
+$$
