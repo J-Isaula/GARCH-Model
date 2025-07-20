@@ -8,11 +8,11 @@ La **heterocedasticidad** es un enfoque popular para modelar volatilidad.
 
 ## Volatilidad
 
+La volatilidad es una característica inherente a las series de tiempo financieras. En general, no es constante y en consecuencia los modelos de series de tiempo tradicionales que suponen varianza homocedástica, no son adecuados para modelar series de tiempo Financieras.
+
 -   En finanzas, la volatilidad es una medida estadística de la dispersión de los rendimientos de los activos a lo largo del tiempo.
 
 -   A menudo se calcula como la desviación estándar o varianza de los rendimientos (o retornos) de precios.
-
-La volatilidad es una característica inherente a las series de tiempo financieras. En general, no es constante y en consecuencia los modelos de series de tiempo tradicionales que suponen varianza homocedástica, no son adecuados para modelar series de tiempo Financieras.
 
 En general, cuanto mayor sea la volatilidad, más riesgoso será un activo financiero.
 
@@ -78,14 +78,6 @@ De manera similar, la volatilidad anual se puede obtener multiplicando la volati
 $$
 \sigma_{anual} = \sqrt{252}\times \sigma_{d}
 $$
-
-## Desafío del modelado de la volatilidad
-
-Un supuesto común en el modelado de series temporales es que la volatilidad permanece constante a lo largo del tiempo. Sin embargo, **heterocedasticidad**, literalmente significa ***"diferente".***
-
-El termino "dispersión" en griego antiguo se observa con frecuencia en los datos de rendimiento financiero.
-
-La volatilidad tiende a aumentar o disminuir sistemáticamente con el tiempo.
 
 ## Detectando Heterocedasticidad
 
@@ -183,90 +175,35 @@ Por su contribución, Engle ganó el Premio Nobel de Economía en 2003.
 
 ![](img/fig3.png){width="200"}
 
-## Luego vino el GARCH
-
 Basados en ARCH, los modelos GARCH fueron desarrollados por el economista danés Tim Bollerslev en 1986.
 
 -   La **"G"** en GARCH significa *"Generalizado"* . Dato curioso: Bollerslev escribió sobre los modelos GARCH en su doctorado como trabajo de tesis, bajo la dirección de Engle, quien fue el inventor de los modelos ARCH.
 
     ![](img/fig4.png){width="200"}
 
-Antes de sumergirnos en las ecuaciones del modelo GARCH, aclaremos algunos términos básicos.
+## Modelo ARCH(p) en regresión
 
-**Ruido Blanco** $(z)$**:** Variables aleatorias no correlacionadas con media cero y varianza finita.
+Si la variable aleatoria $\{y_t\}_{t\in I}$ (donde $I$ es un conjunto discreto de índices), es muestreada de la función de densidad condicional $f(y_t | \psi_{t-1})$, el pronóstico del valor actual de la variable condicionado a la información pasada $\psi_{t-1}$ es $\mu_t = E\left(\begin{array}{c}y_t | \psi_{t-1}\end{array}\right)$.
 
-![](img/fig5.png){width="400"}
+La media puede modelarse, por ejemplo, a través del modelo de regresión $\mu_t = x_t\beta$, donde $x_t = \left(\begin{array}{c}1, x_{t1}, . . . , x_{tk}\end{array}\right)$ es el vector de observaciones de las variables independientes y $\beta^{\prime} = \left(\begin{array}{c}\beta_0, \beta_1, . . . , \beta_k\end{array}\right)$ es un vector de parámetros desconocidos.
 
-**Una serie temporal** es ruido blanco si las variables son independientes y se distribuyen idénticamente con una media de cero.
+La varianza condicional, $Var\left(\begin{array}{c}y_t | \psi_{t-1}\end{array}\right)$, depende de la información pasada y esta dependencia puede modelarse mediante una función $h_t = h\left(\begin{array}{c}\epsilon_{t-1}, \epsilon_{t-2}, . . . , \epsilon_{t-p}, \alpha\end{array}\right)$, la cual se tiene en cuenta que la varianza es positiva y donde $\alpha^{\prime} = \left(\begin{array}{c}\alpha_0, \alpha_1, . . . , \alpha_p\end{array}\right)$ es un vector de parámetros desconocidos. En este modelo, $\epsilon_{t} = y_t - x_t\beta$ para $t\in I$ y la información $\psi_{t-1}$ es la sigma álgebra generada por $\epsilon_{t-1},\epsilon_{t-2}, . . .$.
 
-**Residuo:** un residuo es la diferencia entre el valor observado de una variable en una serie de tiempo $t$ y su valor predicho basado en información disponible antes del tiempo $t$. $$Residuo = Value_{predicho} - Value_{observado}$$
-
-Si el modelo de predicción funciona correctamente, los residuos sucesivos no están correlacionados entre si, es decir, constituyen una serie temporal de ruido blanco. En otras palabras, el modelo se ha encargado de todos los aspectos predecibles, estos aspectos son componentes de una serie temporal, dejando sólo la parte impredecible de ruido blanco.
-
-## La volatilidad de muchas series no es constante
-
--   En modelos econométricos convencionales, se asume que la varianza del término de error es constante.
-
--   Muchas series de tiempo económicas exhiben períodos de volatilidad inusualmente alta, seguidos por períodos de relativa tranquilidad.
-
--   En tales circunstancias, el supuesto de **homoscedasticidad** es inapropiado.
-
--   En ocasiones, uno puede estar interesado en pronosticar la **varianza condicional** de una serie.
-
--   Consideremos el mercado accionario. Algunas veces el mercado es muy volatil, otras veces no.
-
--   La volatilidad del retorno de las acciones determina el riesgo de las inversiones.
-
--   En finanzas se tiene por cierto que el riesgo y el retorno están correlacionados positivamente.
-
--   Para hacer buenas inversiones, es crucial entender el riesgo apropiadamente.
-
-![](img/fig6.png){width="800"}
-
-![](img/fig7.png){width="800"}
-
-![](img/fig8.png){width="800"}
-
-### Pronosticando la Varianza 
-
--   Un enfoque para pronosticar la varianza es introducir explícitamente una variable independiente que ayude a predecir la volatilidad.
-
--   Por ejemplo \
-    \
-    ![](img/fig9.png){width="300"}
-
--   Si $x_t = x_{t-1} = . . .$ una constante, entonces $\{y_t\}$ es ruido blanco.
-
--   De lo contrario, la varianza de $y_{t+1}$ condicional en el valor observado $x_t$ es $$Var\left(\begin{array}{c}y_{t+1} | x_t\end{array}\right) = x_t^2\sigma^2$$
-
--   Si $x_t$ tiene correlación serial positiva, entonces la varianza condicional $y_{t+1}$ también la tendrá.
-
-## El modelo ARCH
-
-En terminos generales, todos los modelos ARCH (y GARCH, que estudiaremos) consisten en dos ecuaciones:
-
-1.  **Una ecuación de la media**, que describe la evolución de la variable de interés $y_t$.
-
-2.  **Una ecuación de la varianza**, que describe la evolución de la varianza de $y_t$.
-
-3.  En adelante, vamos a denotar por $\Omega_t$ todos los datos realizados hasta la fecha $t$.
-
-El modelo ARCH(1) está definido por estas dos ecuaciones:
+Un proceso $\{y_t\}_{t\in I}$ obedece al modelo de regresión auto regresivo condicionalmente heterocedástico de orden $p$, ARCH(p) [@Engle1982], si:
 
 $$
-y_t = c + \epsilon_t \longrightarrow (media)
+y_t|\psi_{t-1} \sim N(\mu_t, h_t) \hspace{5cm} (1)\\
+\mu_t = x_t\beta \hspace{7.2cm} (2)\\
+h_t = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_p\epsilon_{t-p}^2\hspace{2.9cm} (3)\\
+\epsilon_{t} = y_t - x_t\beta\hspace{6.4cm} (4)
 $$
 
-$$
-\epsilon_t = u_t\sqrt{\alpha_0 + \alpha_1\epsilon_{t-1}^2} \longrightarrow (varianza)
-$$
+con $\alpha_0 > 0$, $\alpha_i \geq 0$, $i = 1, . . . , p$
 
-donde $u_t\sim N(0, 1)$, $\alpha_0 > 0$, y $\alpha_1 > 0$.
+De los supuestos del modelo se deduce que $\epsilon_t | \psi_{t-1} \sim N(0, h_t)$ y si el proceso $y_t | \psi_{t-1}$ tiene media $\mu_t = 0$, $\epsilon_t = y_t$. En este caso, el modeoo puede expresarse como:
 
-La idea básica de los modelos ARCH es que:
+$$\epsilon_t|\psi_{t-1}\sim N(0, h_t) \hspace{5cm} (5)$$
 
--   El impacto de un rendimiento de activos no está correlaciondo en serie, pero si depende.
+$$h_t = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_p\epsilon_{t-p}^2 \hspace{2.5cm} (6)$$
 
--   La dependencia de $\epsilon_t$ se puede describir mediante una función cuadrática simple de sus valores retrasados. Específicamente, un modelo `ARCH(q)` asume que $$\alpha_t = \sigma_t\epsilon_t, \hspace{1cm} \sigma_t^2 = \alpha_0 + \alpha_1\epsilon_{t-1}^2 + . . . + \alpha_q\epsilon_{t-q}^2$$
-
--   
+que es el modelo `ARCH(p)` propuesto, inicialmente, por Engle. Además, la varianza $h_t$ puede modelarse mediante un proceso auto regresivo de orden $p$. `AR(p)` en las variables $u_t = \epsilon_t^2$.
