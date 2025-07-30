@@ -231,3 +231,39 @@ Debido a este resultado se tiene, en este caso, una restricción más para los p
 $$
 \Sigma_{i=1}^p \alpha_i < 1
 $$
+
+## Función de Verosimilitud 
+
+Suponga que $\{y_t\}_{t\in I}$ se generta por medio de un proceso `ARCH(p)` en regresión como el definido por las ecuaciones (1) y (4). Entonces, la función de verosimilitud para la observación $t-$ésima es:
+
+$$
+f(y_t | \psi_{t-1})
+ = \frac{1}{\sqrt{h_t}\sqrt{2\pi}}e^{-\frac{1}{2}\frac{(y_t - \mu_t)^2}{h_t}} = \frac{1}{\sqrt{h_t}{\sqrt{2\pi}}}e^{-\frac{1}{2}\frac{\epsilon_t^2}{h_t}}\hspace{1.6cm} (11)$$
+
+y su logaritmo es constantes:
+
+$$
+\ell_t = -\frac{1}{2}\log h_t - \frac{1}{2}\frac{\epsilon_t^2}{h_t} \hspace{7.5cm} (12)
+$$
+
+Así, el logaritmo de la función de verosimilitud, denotado $\ell$, para $T$ observaciones es:
+
+$$
+\ell = \frac{1}{T}\sum_{t=1}^T \ell_t \hspace{9.5cm} (13)
+$$
+
+La función $\ell_t$ puede ser maximizada respecto a los vectores de parámetros desconocidos $\alpha$ y $\beta$. Los estimadores máximo verosímiles se encuentran al resolver el sistema dado por las condiciones de primer orden:
+
+$$
+\frac{\partial\ell_t}{\partial \alpha} = \frac{1}{2h_t}\frac{\partial h_t}{\partial \alpha}\left(\begin{array}{c}\frac{\epsilon_t^2}{h_t} - 1\end{array}\right)\hspace{6.9cm} (14)
+$$
+
+$$
+\frac{\partial \ell_t}{\partial\beta} = \frac{\epsilon_tx_t^\prime}{h_t} + \frac{1}{2h_t}\frac{\partial h_t}{\partial\beta}\left(\begin{array}{c}\frac{\epsilon_t^2}{h_t} - 1\end{array}\right)\hspace{5.3cm} (15)
+$$
+
+Estas dos últimas ecuaciones se obtienen así: para la ecuación (14), la derivada parcial de $\ell_t$ respecto a la componente $j-$ésima de $\alpha$, $1 \leq j \leq p$, es:
+
+$$
+\frac{\partial \ell_t}{\partial \alpha_j} = -\frac{1}{2}\frac{1}{h_t} \frac{\partial h_t}{\partial \alpha_j} + \frac{1}{2}\left(\begin{array}{c}\frac{\epsilon_t^2}{h_t^2}\frac{\partial h_t}{\partial \alpha_j}\end{array}\right) = \frac{1}{2h_t}\frac{\partial h_t}{\partial \alpha_j}\left(\begin{array}{c}\frac{\epsilon_t^2}{h_t} - 1\end{array}\right) \hspace{0.8cm} (16)
+$$

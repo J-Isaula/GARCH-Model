@@ -21,3 +21,4 @@ el-modelo-arch
 volatilidad
 características-de-la-volatilidad
 modelo-archp-en-regresión
+función-de-verosimilitud
